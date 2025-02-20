@@ -5,10 +5,11 @@ interface InputOnEdit {
   value: string;
   editMode: boolean;
   handleUpdate: (value: string) => void;
+  className: string;
 }
 
 export const InputOnEdit: FC<InputOnEdit> = (props) => {
-  const { value, editMode, handleUpdate } = props;
+  const { value, editMode, handleUpdate, className } = props;
   const [editValue, setEditValue] = useState<string>(value);
 
   const handleValueChange = (value: string) => {
@@ -25,7 +26,7 @@ export const InputOnEdit: FC<InputOnEdit> = (props) => {
         />
       );
     }
-    return <div>{value}</div>;
+    return <div className={className}>{value}</div>;
   }
 
   return <div>{renderContent()}</div>;

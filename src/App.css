@@ -135,9 +135,9 @@ body {
 .tags-container {
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 4px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 3px;
 }
 
 .completed {

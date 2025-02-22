@@ -34,7 +34,7 @@ function App() {
   });
   const [error, setError] = useState<string>("");
   const [editModeId, setEditModeId] = useState<number | null>(null);
-  const [filter, setFilter] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const selectedCategory = categories[0];
   const [previousValues, setPreviousValues] = useState<{
     [key: number]: string;
@@ -115,14 +115,14 @@ function App() {
   };
 
   const filteredTasks = tasks?.filter((task) => {
-    if (filter === "all") return true;
-    if (filter === "completed") return task.completed;
-    if (filter === "not completed") return !task.completed;
-    return task.category === filter;
+    if (activeFilter === "all") return true;
+    if (activeFilter === "completed") return task.completed;
+    if (activeFilter === "not completed") return !task.completed;
+    return task.category === activeFilter;
   });
 
   const handleFilterChange = (category: string) => {
-    setFilter(category);
+    setActiveFilter(category);
   };
 
   const changeCategory = (id: number, newCategory: string) => {
@@ -167,6 +167,7 @@ function App() {
             handleFilter={() => handleFilterChange(category)}
             key={category}
             name={category}
+            className={`tag ${activeFilter === category ? "activeTag" : ""}`}
           />
         ))}
       </div>

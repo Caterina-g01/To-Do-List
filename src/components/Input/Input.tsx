@@ -6,10 +6,11 @@ interface InputProps {
   handleChange: (value: string) => void;
   value: string;
   handleBlur?: () => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export default function Input(props: InputProps) {
-  const { handleChange, value, handleBlur } = props;
+  const { handleChange, value, handleBlur, onKeyDown } = props;
 
   return (
     <div>
@@ -18,6 +19,7 @@ export default function Input(props: InputProps) {
         onChange={(event) => handleChange(event.target.value)}
         value={value}
         onBlur={handleBlur}
+        onKeyDown={onKeyDown}
       />
     </div>
   );

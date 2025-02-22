@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./styles.module.css";
 
 interface TagsProps {
   name: string;
@@ -6,5 +7,9 @@ interface TagsProps {
 }
 
 export default function Tag({ name, handleFilter }: TagsProps) {
-  return <button onClick={handleFilter}>{name}</button>;
+  return (
+    <button className={s.tag} onClick={handleFilter}>
+      {name}
+    </button>
+  );
 }

@@ -6,10 +6,13 @@ interface InputOnEdit {
   editMode: boolean;
   handleUpdate: (value: string) => void;
   className: string;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
 }
 
 export const InputOnEdit: FC<InputOnEdit> = (props) => {
-  const { value, editMode, handleUpdate, className } = props;
+  const { value, editMode, handleUpdate, className, onKeyDown, onClick } =
+    props;
   const [editValue, setEditValue] = useState<string>(value);
 
   const handleValueChange = (value: string) => {
@@ -20,13 +23,18 @@ export const InputOnEdit: FC<InputOnEdit> = (props) => {
     if (editMode) {
       return (
         <Input
+          onKeyDown={onKeyDown}
           handleBlur={() => handleUpdate(editValue)}
           value={editValue}
           handleChange={handleValueChange}
         />
       );
     }
-    return <div className={className}>{value}</div>;
+    return (
+      <div onClick={onClick} className={className}>
+        {value}
+      </div>
+    );
   }
 
   return <div>{renderContent()}</div>;
